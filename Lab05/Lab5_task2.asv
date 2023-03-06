@@ -1,0 +1,23 @@
+
+img1 = im2double(imread('einstein1.jpg'));
+img2 = im2double(imread('einstein2.jpg'));
+
+template = im2double(imread('template.jpg'));
+
+[output, matched] = template_matching_SSD(img1, template);
+
+figure, imshow(output ./ max(output(:))); 
+title('SSD output');
+figure, imshow(match); 
+title('SSD match');
+imwrite(output ./ max(output(:)), sprintf('%s_ssd_output.jpg', name)); imwrite(match, sprintf('%s_ssd_match.jpg', name));
+[output, matched] = template_matching_SSD(img2, template);
+
+
+[output1, matched1] = template_matching_normcorr(img, template);
+
+figure, imshow(output./max(output(:)));
+figure, imshow(matched);
+
+figure, imshow(output1./max(output1(:)));
+figure, imshow(matched1);
